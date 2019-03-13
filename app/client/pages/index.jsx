@@ -1,71 +1,21 @@
-import React from 'react'
-import Link from 'next/link'
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  Container,
-  DropdownItem } from 'reactstrap'
-import { Page } from '../components/page'
-import { withIntl } from '../lib/helper'
+import React, { Component } from 'react'
+import { Container, Navbar, NavbarBrand } from 'reactstrap'
 
-export default withIntl(class extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      isOpen: false
-    }
-  }
-  toggle () {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
+class Index extends Component {
   render () {
-    const { t } = this.props
+    const { children } = this.props
     return (
-      <Page title={t('hello')}>
-        <Navbar color='primary' dark expand='md'>
+      <div className='body'>
+        <Navbar dark color='primary' expand='lg'>
           <Container>
-            <Link href='/'>
-              <a className='navbar-brand'>Ryzen Example</a>
-            </Link>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
-                <NavItem>
-                  <Link href='/module'><a className='nav-link'>Module</a></Link>
-                </NavItem>
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                  Options
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem>
-                    Option 1
-                    </DropdownItem>
-                    <DropdownItem>
-                    Option 2
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>
-                    Reset
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </Nav>
-            </Collapse>
+            <NavbarBrand href='#'>Ryzen Example</NavbarBrand>
           </Container>
         </Navbar>
-        <Container> {t('hello')} </Container>
-      </Page>
+        <Container className='mt-4 position-relative'> Haha hehe </Container>
+        {children}
+      </div>
     )
   }
-})
+}
+
+export default Index

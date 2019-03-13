@@ -1,9 +1,9 @@
 import api from './api'
-import next from './next'
+import client from './client'
 import mountStatic from './static'
 
 export default app => {
-  next(app)
+  client(app)
   api(app)
   mountStatic(app)
 }
