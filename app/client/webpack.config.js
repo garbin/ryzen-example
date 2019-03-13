@@ -1,9 +1,11 @@
 const path = require('path')
+const config = require('./client.config')
+const webpack = require('webpack')
 const { NODE_ENV = 'development' } = process.env
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
-const config = {
+module.exports = {
   mode: NODE_ENV,
   entry: { app: ['./app/client/index'] },
   output: {
@@ -67,6 +69,7 @@ const config = {
       title: 'Ryzen Example',
       appMountId: 'app'
     }),
+    new webpack.EnvironmentPlugin(config),
     new LodashModuleReplacementPlugin()
   ],
   optimization: {
@@ -74,7 +77,7 @@ const config = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /[\\\/]node_modules[\\\/]/,
+          test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
           chunks: 'all'
         }
@@ -82,5 +85,3 @@ const config = {
     }
   }
 }
-
-module.exports = config

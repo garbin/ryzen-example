@@ -4,6 +4,7 @@ import { Container, Navbar, NavbarBrand } from 'reactstrap'
 class Index extends Component {
   render () {
     const { children } = this.props
+    console.log(process.env.TEST_CONFIG)
     return (
       <div className='body'>
         <Navbar dark color='primary' expand='lg'>
