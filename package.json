@@ -115,6 +115,7 @@
         "jest": "^24.5.0",
         "jest-chain": "^1.0.5",
         "jest-extended": "^0.11.0",
+        "json-loader": "^0.5.7",
         "koa-webpack": "^5.2.2",
         "lodash-webpack-plugin": "^0.11.5",
         "nock": "^10.0.6",

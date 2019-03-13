@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { withIntl } from '../lib/helper'
 import { Container, Navbar, NavbarBrand } from 'reactstrap'
 
 class Index extends Component {
   render () {
-    const { children } = this.props
+    const { children, t } = this.props
     console.log(process.env.TEST_CONFIG)
     return (
       <div className='body'>
@@ -12,11 +13,11 @@ class Index extends Component {
             <NavbarBrand href='#'>Ryzen Example</NavbarBrand>
           </Container>
         </Navbar>
-        <Container className='mt-4 position-relative'> Haha hehe </Container>
+        <Container className='mt-4 position-relative'>{t('hello')}</Container>
         {children}
       </div>
     )
   }
 }
 
-export default Index
+export default withIntl(Index)

@@ -38,12 +38,3 @@ export const api = {
     delete: createCall('delete', dispatch)
   })
 }
-
-export const result = {
-  state: null,
-  reducers: {
-    update (state, payload) {
-      return payload
-    }
-  }
-}
