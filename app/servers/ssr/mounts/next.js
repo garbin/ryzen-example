@@ -18,7 +18,7 @@ const getLocaleDataScript = (locale) => {
   return localeDataCache.get(lang)
 }
 
-const getMessages = locale => require(`../../../clients/ssr/locales/${locale}.json`)
+const getMessages = locale => require(`../../../clients/ssr/locales/${locale.replace('-', '_')}.json`)
 
 export default async app => {
   const dev = process.env.NODE_ENV !== 'production'
