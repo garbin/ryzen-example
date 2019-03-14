@@ -1,5 +1,5 @@
 import '@babel/polyfill'
-import './lib/style'
+import './style'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Routes from './routes'

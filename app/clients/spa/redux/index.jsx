@@ -1,7 +1,14 @@
 import { init } from '@rematch/core'
+import createLoadingPlugin from '@rematch/loading'
+import middlewares from './middlewares'
 import * as models from './models'
-import reducers from './reducers'
+import * as reducers from './reducers'
 
 export default function () {
-  return init({ models, redux: { reducers } })
+  return init({
+    models,
+    plugins: [createLoadingPlugin()],
+    middlewares: middlewares(),
+    redux: { reducers }
+  })
 }

@@ -4,7 +4,7 @@ const pkg = require('../../../package')
 const withCss = require('@zeit/next-css')
 const withSass = require('@zeit/next-sass')
 const withSourceMaps = require('@zeit/next-source-maps')
-const baseURL = config.app.get('servers.ssr.url') || 'http://localhost:8000'
+const baseURL = config.app.get('servers.ssr.url')
 const api = `${baseURL}/api`
 module.exports = compose(
   withCss,
