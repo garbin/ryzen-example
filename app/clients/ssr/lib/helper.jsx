@@ -57,9 +57,6 @@ export function handleRequestError (e, { req, res, isServer, store }) {
 export function config (scope = 'publicRuntimeConfig') {
   return getConfig()[scope]
 }
-export function md5 (text) {
-  return crypto.createHash('md5').update(text).digest('hex')
-}
 
 export function apolloResult (props) {
   props = isFunction(props) ? { success: props } : props
