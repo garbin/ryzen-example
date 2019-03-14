@@ -8,9 +8,9 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 module.exports = {
   devtool: NODE_ENV === 'development' ? 'cheap-module-eval-source-map' : 'source-map',
   mode: NODE_ENV,
-  entry: { app: ['./app/client/index'] },
+  entry: { app: ['./app/clients/spa/index'] },
   output: {
-    path: path.resolve(__dirname, '../../build'),
+    path: path.resolve(__dirname, '../../../build'),
     filename: '[name].[hash].js',
     publicPath: '/'
   },
@@ -19,7 +19,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        options: {
+          plugins: ['react-hot-loader/babel']
+        }
       },
       {
         test: /\.svg$/,
@@ -63,7 +66,7 @@ module.exports = {
     }
   },
   devServer: {
-    contentBase: path.resolve(__dirname, '../../build/'),
+    contentBase: path.resolve(__dirname, '../../../build/'),
     hot: true
   },
   plugins: [

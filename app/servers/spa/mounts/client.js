@@ -1,7 +1,7 @@
 import path from 'path'
 import serve from 'koa-static'
 import koaWebpack from 'koa-webpack'
-import webpackConfig from '../../../client/webpack.config'
+import webpackConfig from '../../../clients/spa/webpack.config'
 
 export default async app => {
   const dev = process.env.NODE_ENV !== 'production'

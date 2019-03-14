@@ -2,10 +2,9 @@ module.exports = function (api) {
   if (api.env('test')) return {}
   api.cache(true)
   return {
-    presets: [ '@babel/preset-env', '@babel/preset-react' ],
+    presets: [ '@babel/preset-env', 'next/babel' ],
     plugins: [
       '@babel/plugin-proposal-export-default-from',
-      'react-hot-loader/babel',
       [
         'react-intl-auto',
         {

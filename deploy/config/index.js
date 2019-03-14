@@ -24,14 +24,24 @@ if (APP_PASSPORT_TWITTER) passport.TWITTER = JSON.parse(APP_PASSPORT_TWITTER)
 module.exports = {
   app: new Conf({
     defaults: {
-      url: APP_URL,
-      port: APP_PORT,
-      middlewares: { accesslog: true },
-      languages: ['zh-CN', 'en-US'],
+      servers: {
+        api: {
+          middlewares: { accesslog: true },
+          passport
+        },
+        ssr: {
+          url: APP_URL,
+          languages: ['zh-CN', 'en-US'],
+          port: APP_PORT
+        },
+        spa: {
+          url: APP_URL,
+          port: APP_PORT
+        }
+      },
       data_root: APP_DATA_DIR,
       mailer: { smtp: APP_SMTP_CONNECTION, defaults: JSON.parse(APP_SMTP_DEFAULTS) },
-      database: { client: APP_DB_CLIENT, connection: APP_DB_CONNECTION },
-      passport
+      database: { client: APP_DB_CLIENT, connection: APP_DB_CONNECTION }
     },
     cwd,
     configName: 'app'
