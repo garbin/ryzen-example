@@ -10,7 +10,7 @@ module.exports = {
   mode: NODE_ENV,
   entry: { app: ['./app/clients/spa/index'] },
   output: {
-    path: path.resolve(__dirname, '../../../build'),
+    path: path.resolve(__dirname, '../../../build/spa'),
     filename: '[name].[hash].js',
     publicPath: '/'
   },
@@ -18,11 +18,23 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          plugins: ['react-hot-loader/babel']
-        }
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: [ '@babel/preset-env', 'next/babel' ],
+            plugins: [
+              '@babel/plugin-proposal-export-default-from',
+              'react-hot-loader/babel',
+              [
+                'react-intl-auto',
+                {
+                  'removePrefix': true
+                }
+              ]
+            ]
+          }
+        }],
+        exclude: /node_modules/
       },
       {
         test: /\.svg$/,
@@ -66,7 +78,7 @@ module.exports = {
     }
   },
   devServer: {
-    contentBase: path.resolve(__dirname, '../../../build/'),
+    contentBase: path.resolve(__dirname, '../../../build/spa'),
     hot: true
   },
   plugins: [

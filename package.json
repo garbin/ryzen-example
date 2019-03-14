@@ -5,10 +5,9 @@
     "main": "index.js",
     "scripts": {
         "start": "node -r esm ./app/commands/server",
-        "watch": "nodemon -x 'node -r esm' --watch app --ignore app/client -L -e js,es,jsx ./app/commands/server",
-        "build": "npm run build-locale && npm run build-client",
-        "build-client": "webpack --config app/client/webpack.config.js",
-        "build-locale": "extract-messages -l 'zh-CN' -d 'zh-CN' -o app/client/locales --flat 'app/client/**/*.jsx'",
+        "watch": "nodemon -x 'node -r esm' --watch app --ignore app/clients -L -e js,es,jsx ./app/commands/server",
+        "build": "node -r esm ./app/commands/build",
+        "build-locale": "extract-messages -l 'en_US' -d 'en_US' -o app/client/locales --flat 'app/client/**/*.jsx'",
         "test": "export NODE_ENV=test && standard ./app && npm run resetup && jest",
         "setup": "npm run knex migrate:latest && npm run knex seed:run",
         "resetup": "npm run knex migrate:rollback && npm run setup",
@@ -92,6 +91,7 @@
         "redux-promise-middleware": "^6.1.0",
         "redux-thunk": "^2.3.0",
         "ryzen": "^1.2.0",
+        "shelljs": "^0.8.3",
         "uuid": "^3.3.2",
         "winston": "^3.2.1"
     },

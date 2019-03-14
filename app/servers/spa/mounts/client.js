@@ -9,6 +9,6 @@ export default async app => {
     const middleware = await koaWebpack({ config: webpackConfig })
     app.use(middleware)
   } else {
-    app.use(serve(path.resolve(__dirname, '../../../../build')))
+    app.use(serve(path.resolve(__dirname, '../../../../build/spa')))
   }
 }

@@ -11,7 +11,7 @@ module.exports = compose(
   withSass,
   withSourceMaps
 )({
-  distDir: '../../../build',
+  distDir: '../../../build/ssr',
   publicRuntimeConfig: {
     version: pkg.version,
     baseURL,
