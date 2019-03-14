@@ -1,22 +1,19 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { IntlProvider, addLocaleData } from 'react-intl'
-import en from 'react-intl/locale-data/en'
-import zh from 'react-intl/locale-data/zh'
+import { IntlProvider } from 'react-intl'
 import ReduxToastr from 'react-redux-toastr'
-import createStore from './redux'
 import { hot } from 'react-hot-loader'
 import { Helmet } from 'react-helmet'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import createStore from './redux'
 import Index from './pages'
-import { locales } from './locales'
-const locale = 'zh'
+import { messages, getUserLocale } from './locales'
+const locale = getUserLocale()
 
-addLocaleData(en, zh)
 const store = createStore()
 export default hot(module)(props => (
   <Provider store={store}>
-    <IntlProvider locale={locale} messages={locales[locale]}>
+    <IntlProvider locale={locale} messages={messages[locale]}>
       <div>
         <Helmet>
           <title>Ryzen SPA Example</title>

@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 module.exports = {
+  devtool: NODE_ENV === 'development' ? 'cheap-module-eval-source-map' : 'source-map',
   mode: NODE_ENV,
   entry: { app: ['./app/client/index'] },
   output: {
@@ -56,7 +57,10 @@ module.exports = {
     extensions: [
       '.js',
       '.jsx'
-    ]
+    ],
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
   },
   devServer: {
     contentBase: path.resolve(__dirname, '../../build/'),

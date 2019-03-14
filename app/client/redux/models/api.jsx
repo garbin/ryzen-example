@@ -1,20 +1,26 @@
 import axios from 'axios'
+function getFullPath (path) {
+  return process.env.API_ROOT_PATH + path
+}
+function getResourceName (path) {
+  return path.split('/').reverse()[0]
+}
 
 function createCall (method, dispatch) {
-  return async (payload, rootState) => {
+  return async (payload, rootState, mapName) => {
     if (['post', 'patch', 'put'].includes(method)) {
       const [path, data, options = {}] = payload
-      const result = await axios[method](path, data, options)
+      const result = await axios[method](getFullPath(path), data, options)
       dispatch.api.response({
-        name: path,
+        name: mapName || getResourceName(path),
         response: result.data
       })
       return result
     } else {
       const [path, options = {}] = payload
-      const result = await axios[method](path, options)
+      const result = await axios[method](getFullPath(path), options)
       dispatch.api.response({
-        name: path,
+        name: mapName || getResourceName(path),
         response: result.data
       })
       return result
