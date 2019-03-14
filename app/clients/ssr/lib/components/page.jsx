@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { connect } from 'react-redux'
 import ReduxToastr from 'react-redux-toastr'
-import '../lib/bootstrap'
 import LoadingIndicator from './loading'
+import '../../style'
 
 export class Page extends React.Component {
   static contextTypes = {

@@ -1,30 +1,27 @@
-import { config } from '../../lib/helper'
 import axios from 'axios'
-import cookie from 'js-cookie'
-import { get } from 'lodash'
+import { config } from '../../lib/helper'
+function getFullPath (path) {
+  return config().api + path
+}
+function getResourceName (path) {
+  return path.split('/').reverse()[0]
+}
 
 function createCall (method, dispatch) {
-  return async (payload, rootState) => {
-    const token = process.browser ? cookie.get('access_token') : get(rootState.oauth, 'user.token.access_token')
-    const headers = {}
-    if (token) {
-      headers.Authorization = `Bearer ${token}`
-    }
+  return async (payload, rootState, mapName) => {
     if (['post', 'patch', 'put'].includes(method)) {
       const [path, data, options = {}] = payload
-      options.headers = Object.assign({}, options.headers, headers)
-      const result = await axios[method](`${config().api}${path}`, data, options)
+      const result = await axios[method](getFullPath(path), data, options)
       dispatch.api.response({
-        name: path,
+        name: mapName || getResourceName(path),
         response: result.data
       })
       return result
     } else {
       const [path, options = {}] = payload
-      options.headers = Object.assign({}, options.headers, headers)
-      const result = await axios[method](`${config().api}${path}`, options)
+      const result = await axios[method](getFullPath(path), options)
       dispatch.api.response({
-        name: path,
+        name: mapName || getResourceName(path),
         response: result.data
       })
       return result

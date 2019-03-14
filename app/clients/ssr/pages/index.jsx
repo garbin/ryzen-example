@@ -1,71 +1,33 @@
-import React from 'react'
-import Link from 'next/link'
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  Container,
-  DropdownItem } from 'reactstrap'
-import { Page } from '../components/page'
-import { withIntl } from '../lib/helper'
+import React, { Component } from 'react'
+import { withIntl, compose, connect } from '../lib/compose'
+import { Container, Navbar, NavbarBrand } from 'reactstrap'
+import { Page } from '../lib/components/page'
+import { List } from '../lib/components/post'
 
-export default withIntl(class extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      isOpen: false
-    }
-  }
-  toggle () {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
+class Index extends Component {
+  async componentWillMount () {
+    // api.get can be found in models/api.jsx line #41
+    this.props.dispatch.api.get(['/posts'])
   }
   render () {
-    const { t } = this.props
+    const { t, posts = [] } = this.props
     return (
       <Page title={t('hello')}>
-        <Navbar color='primary' dark expand='md'>
+        <Navbar dark color='primary' expand='lg'>
           <Container>
-            <Link href='/'>
-              <a className='navbar-brand'>Ryzen Example</a>
-            </Link>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
-                <NavItem>
-                  <Link href='/module'><a className='nav-link'>Module</a></Link>
-                </NavItem>
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                  Options
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem>
-                    Option 1
-                    </DropdownItem>
-                    <DropdownItem>
-                    Option 2
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>
-                    Reset
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </Nav>
-            </Collapse>
+            <NavbarBrand href='#'>Ryzen Example</NavbarBrand>
           </Container>
         </Navbar>
-        <Container> {t('hello')} </Container>
+        <Container className='mt-4 position-relative'>
+          <List posts={posts} />
+          <p>{t('hello')}</p>
+        </Container>
       </Page>
     )
   }
-})
+}
+
+export default compose(
+  connect(state => ({ posts: state.api.posts })),
+  withIntl
+)(Index)

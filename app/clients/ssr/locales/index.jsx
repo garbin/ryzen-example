@@ -1,8 +1,7 @@
 import { defineMessages, addLocaleData } from 'react-intl'
 import en from 'react-intl/locale-data/en'
 import zh from 'react-intl/locale-data/zh'
-import enMsg from './en-US.json'
-import zhMsg from './zh-CN.json'
+import enMsg from './en_US.json'
 addLocaleData([...en, ...zh])
 
 export function getUserLocale (defaultLocale = 'zh') {
@@ -12,4 +11,4 @@ export default defineMessages({
   hello: '你好! 世界',
   welcome: '欢迎!'
 })
-export const messages = { en: enMsg, zh: zhMsg }
+export const messages = { en: enMsg }
