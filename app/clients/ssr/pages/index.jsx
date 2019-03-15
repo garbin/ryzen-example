@@ -15,12 +15,11 @@ class Index extends Component {
       <Page title={t('hello')}>
         <Navbar dark color='primary' expand='lg'>
           <Container>
-            <NavbarBrand href='#'>Ryzen Example</NavbarBrand>
+            <NavbarBrand href='#'>{t('hello')}</NavbarBrand>
           </Container>
         </Navbar>
         <Container className='mt-4 position-relative'>
           <List posts={posts} />
-          <p>{t('hello')}</p>
         </Container>
       </Page>
     )

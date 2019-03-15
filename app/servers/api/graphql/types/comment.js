@@ -5,6 +5,8 @@ export const Comment = new types.Object({
   name: 'Comment',
   fields: presets.model({
     id: types.nonNull(types.ID),
-    comment: types.string()
+    comment: types.string(),
+    created_at: types.datetime(),
+    updated_at: types.datetime()
   })
 })

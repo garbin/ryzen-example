@@ -48,7 +48,7 @@ export function handleRequestError (e, { req, res, isServer, store }) {
       Router.push('/session/signin')
     }
   } else {
-    console.error('error', e.message)
+    console.error('[SSR_ERROR]', e.message)
   }
 }
 
