@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { Container, Navbar } from 'reactstrap'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import { withIntl, compose, Page, Post, apolloResult, Link } from '../components'
+import { withIntl, compose } from '../components/compose'
+import { Page } from '../components/page'
+import { Post } from '../components/post'
+import { Link } from '../components/env'
+import { apolloResult } from '../components/functions'
 
 export const query = gql`
   query post($id: ID!){
@@ -33,7 +37,7 @@ export class PostPage extends Component {
         </Navbar>
         <Container className='mt-4 position-relative'>
           <Query query={query} variables={{ id: match.params.id }}>
-            {apolloResult(data => <Post.Post post={data.post} />)}
+            {apolloResult(data => <Post post={data.post} />)}
           </Query>
         </Container>
       </Page>

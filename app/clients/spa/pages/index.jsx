@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { withIntl, compose, connect } from '../components/compose'
 import { Container, Navbar, NavbarBrand } from 'reactstrap'
-import { Post, Page } from '../components'
+import { Page } from '../components/page'
+import { List } from '../components/post'
 
 class Index extends Component {
   componentWillMount () {
@@ -17,7 +18,7 @@ class Index extends Component {
           </Container>
         </Navbar>
         <Container className='mt-4 position-relative'>
-          <Post.List posts={posts} />
+          <List posts={posts} />
         </Container>
       </Page>
     )
