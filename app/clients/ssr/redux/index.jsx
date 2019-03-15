@@ -4,11 +4,14 @@ import middlewares from './middlewares'
 import * as models from './models'
 import * as reducers from './reducers'
 
-export default function () {
+export default function (initialState) {
   return init({
     models,
     plugins: [createLoadingPlugin()],
-    middlewares: middlewares(),
-    redux: { reducers }
+    redux: {
+      reducers,
+      initialState,
+      middlewares: middlewares()
+    }
   })
 }

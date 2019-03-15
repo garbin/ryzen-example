@@ -8,7 +8,8 @@ export default function () {
   return init({
     models,
     plugins: [createLoadingPlugin()],
-    middlewares: middlewares(),
-    redux: { reducers }
+    redux: {
+      middlewares: middlewares(),
+      reducers }
   })
 }
