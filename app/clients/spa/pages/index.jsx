@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
-import { withIntl, compose, connect } from '../lib/compose'
+import { withIntl, compose, connect } from '../components/compose'
 import { Container, Navbar, NavbarBrand } from 'reactstrap'
-import { List } from '../lib/components/post'
+import { Post, Page } from '../components'
 
 class Index extends Component {
-  async componentWillMount () {
-    // api.get can be found in models/api.jsx line #41
+  componentWillMount () {
     this.props.dispatch.api.get(['/posts'])
   }
   render () {
     const { t, posts = [] } = this.props
     return (
-      <div className='body'>
+      <Page title={t('hello')}>
         <Navbar dark color='primary' expand='lg'>
           <Container>
-            <NavbarBrand href='#'>Ryzen Example</NavbarBrand>
+            <NavbarBrand href='#'>{t('hello')}</NavbarBrand>
           </Container>
         </Navbar>
         <Container className='mt-4 position-relative'>
-          <List posts={posts} />
-          <p>{t('hello')}</p>
+          <Post.List posts={posts} />
         </Container>
-      </div>
+      </Page>
     )
   }
 }

@@ -53,6 +53,7 @@
         "just-compose": "^1.1.0",
         "koa-passport": "^4.1.1",
         "koa-static": "^5.0.0",
+        "koa2-connect-history-api-fallback": "^0.1.1",
         "next": "^8.0.3",
         "next-redux-wrapper": "^3.0.0-alpha.0",
         "next-routes": "^1.4.2",

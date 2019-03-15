@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 function getFullPath (path) {
   return process.env.API_ROOT_PATH + path
 }
