@@ -16,8 +16,10 @@ app.use(middlewares.router(Object.values(routers)))
 mounts(app)
 
 export { routers, app }
-export function start (...args) {
-  server = app.listen(...args)
+export function start ({ port }) {
+  server = app.listen(port, function () {
+    console.log(`Server has started on port ${this.address().port}`)
+  })
   return server
 }
 export function stop () {

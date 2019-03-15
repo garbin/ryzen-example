@@ -7,7 +7,9 @@ command({
   builder: {
     servers: {
       default: ['spa']
-    }
+    },
+    jobs: { default: [], type: 'array' },
+    port: { default: 0, type: 'number' }
   },
   describe: 'start servers',
   handler (argv) {
@@ -15,8 +17,9 @@ command({
       const servers = await glob('**', { deep: 0, cwd: 'app/servers', onlyFiles: false })
       if (servers.includes(name)) {
         const server = await import(`../servers/${name}`)
-        server.start(config.app.get(`servers.${name}.port`), function () {
-          console.log(`Server has started on port ${this.address().port}`)
+        server.start({
+          port: argv.port || config.app.get(`servers.${name}.port`),
+          jobs: argv.jobs
         })
       }
     })
