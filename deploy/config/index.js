@@ -29,12 +29,12 @@ module.exports = {
           passport
         },
         ssr: {
-          url: '//localhost:7000',
+          url: 'http://localhost:7000',
           port: 7000,
           languages: ['zh-CN', 'en-US']
         },
         spa: {
-          url: '//localhost:8000',
+          url: 'http://localhost:8000',
           port: 8000,
           languages: ['zh-CN', 'en-US']
         }

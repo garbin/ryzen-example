@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { withIntl, compose, connect } from '../lib/compose'
+import { withIntl, compose } from '../lib/compose'
 import { Container, Navbar, NavbarBrand } from 'reactstrap'
 import { Page } from '../lib/components/page'
 import { List } from '../lib/components/post'
 
 class Index extends Component {
-  async componentWillMount () {
-    // api.get can be found in models/api.jsx line #41
-    this.props.dispatch.api.get(['/posts'])
+  static async getInitialProps ({ store }) {
+    const res = await store.dispatch.api.get(['/posts'])
+    return { posts: res.data }
   }
   render () {
     const { t, posts = [] } = this.props
@@ -27,7 +27,4 @@ class Index extends Component {
   }
 }
 
-export default compose(
-  connect(state => ({ posts: state.api.posts })),
-  withIntl
-)(Index)
+export default compose(withIntl)(Index)
