@@ -28,7 +28,7 @@ export class PostPage extends Component {
       <Page title={t('hello')}>
         <Navbar dark color='primary' expand='lg'>
           <Container>
-            <Link href='/'>{t('hello')}</Link>
+            <Link href='/' className='navbar-brand'>{t('hello')}</Link>
           </Container>
         </Navbar>
         <Container className='mt-4 position-relative'>
