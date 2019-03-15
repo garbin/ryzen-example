@@ -3,10 +3,7 @@ import { withIntl, compose, withRouter } from '../lib/compose'
 import { Container, Navbar } from 'reactstrap'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import { apolloResult } from '../lib/helper'
-import { Link } from '../routes'
-import { Page } from '../lib/components/page'
-import { Post } from '../lib/components/post'
+import { apolloResult, Link, Page, Post } from '../components'
 
 export const query = gql`
   query post($id: ID!){
@@ -39,7 +36,7 @@ export class PostPage extends Component {
         </Navbar>
         <Container className='mt-4 position-relative'>
           <Query query={query} variables={{ id: router.query.id }}>
-            {apolloResult((data, { refetch }) => <Post post={data.post} />)}
+            {apolloResult((data, { refetch }) => <Post.Post post={data.post} />)}
           </Query>
         </Container>
       </Page>

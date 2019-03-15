@@ -4,7 +4,7 @@ import { getDataFromTree } from 'react-apollo'
 import cookies from 'js-cookie'
 import fetch from 'isomorphic-fetch'
 import ApolloClient, { InMemoryCache } from 'apollo-boost'
-import { config, handleRequestError } from '../lib/helper'
+import { config, handleRequestError } from '../components'
 
 if (!process.browser) global.fetch = fetch
 

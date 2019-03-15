@@ -2,14 +2,14 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import NextApp, { Container } from 'next/app'
 import withRedux from 'next-redux-wrapper'
-import makeStore from '../../ssr/redux'
-import { oauth } from '../../ssr/redux/actions'
 import { compose } from 'recompose'
 import { startsWith } from 'lodash'
-import withApollo from '../graphql'
-import { handleRequestError, config } from '../lib/helper'
 import { ApolloProvider } from 'react-apollo'
 import { IntlProvider, addLocaleData } from 'react-intl'
+import makeStore from '../../ssr/redux'
+import { oauth } from '../../ssr/redux/actions'
+import withApollo from '../graphql'
+import { handleRequestError, config } from '../components'
 
 if (typeof window !== 'undefined' && window.ReactIntlLocaleData) {
   Object.keys(window.ReactIntlLocaleData).forEach((lang) => {
