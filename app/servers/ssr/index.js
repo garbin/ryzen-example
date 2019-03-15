@@ -18,7 +18,7 @@ mounts(app)
 export { routers, app }
 export function start ({ port }) {
   server = app.listen(port, function () {
-    console.log(`Server has started on port ${this.address().port}`)
+    console.log(`SSR Server has started on port ${this.address().port}`)
   })
   return server
 }

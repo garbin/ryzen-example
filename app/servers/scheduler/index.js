@@ -1,4 +1,5 @@
 import schedule from 'node-schedule'
+import assert from 'assert'
 import getLogger from '../../shared/logger'
 
 const logger = getLogger('scheduler')
@@ -22,6 +23,7 @@ export async function run (name) {
 
 // server required
 export function start ({ jobs }) {
+  assert(jobs.length > 0, 'Jobs is empty')
   jobs.forEach(run)
-  console.log(`scheduler started with jobs: ${jobs}`)
+  console.log(`Scheduler server started with jobs: ${jobs}`)
 }
