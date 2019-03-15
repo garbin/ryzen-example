@@ -4,6 +4,7 @@ import * as queries from './queries'
 const { types } = graphql
 const { default: defaults, ...otherMutations } = mutations
 export default {
+  context: ({ ctx }) => ({ loader: new graphql.Loader() }),
   schema: new types.Schema({
     mutation: new types.Object({
       name: 'Mutation',

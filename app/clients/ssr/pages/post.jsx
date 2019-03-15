@@ -39,7 +39,7 @@ export class PostPage extends Component {
         </Navbar>
         <Container className='mt-4 position-relative'>
           <Query query={query} variables={{ id: router.query.id }}>
-            {apolloResult((data, { refetch }) => <div />)}
+            {apolloResult((data, { refetch }) => <Post post={data.post} />)}
           </Query>
         </Container>
       </Page>
