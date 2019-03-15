@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Navbar, NavbarBrand } from 'reactstrap'
-import { withIntl, compose, Page, Post } from '../components'
+import { withIntl, compose } from '../components/compose'
+import { Page } from '../components/page'
+import { List } from '../components/post'
 
 class Index extends Component {
   static async getInitialProps ({ store }) {
@@ -17,7 +19,7 @@ class Index extends Component {
           </Container>
         </Navbar>
         <Container className='mt-4 position-relative'>
-          <Post.List posts={posts} />
+          <List posts={posts} />
         </Container>
       </Page>
     )

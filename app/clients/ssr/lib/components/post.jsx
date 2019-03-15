@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from '../../routes'
+import { Link } from './env'
 
 export class Post extends React.Component {
   render () {
@@ -19,9 +19,7 @@ export class Item extends React.Component {
     return (
       <div>
         <h3>
-          <Link route='post' params={{ id: post.id }}>
-            <a>{post.title}</a>
-          </Link>
+          <Link route='post' params={{ id: post.id }}>{post.title}</Link>
         </h3>
       </div>
     )

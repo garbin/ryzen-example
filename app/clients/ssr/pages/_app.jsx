@@ -9,7 +9,7 @@ import { IntlProvider, addLocaleData } from 'react-intl'
 import makeStore from '../../ssr/redux'
 import { oauth } from '../../ssr/redux/actions'
 import withApollo from '../graphql'
-import { handleRequestError, config } from '../components'
+import { handleRequestError, config } from '../components/functions'
 
 if (typeof window !== 'undefined' && window.ReactIntlLocaleData) {
   Object.keys(window.ReactIntlLocaleData).forEach((lang) => {

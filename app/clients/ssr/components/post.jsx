@@ -19,7 +19,7 @@ export class Item extends React.Component {
     return (
       <div>
         <h3>
-          <Link href={`/posts/${post.id}`}>{post.title}</Link>
+          <Link route='post' params={{ id: post.id }}>{post.title}</Link>
         </h3>
       </div>
     )

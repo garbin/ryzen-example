@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { withIntl, compose, withRouter } from '../lib/compose'
 import { Container, Navbar } from 'reactstrap'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import { apolloResult, Link, Page, Post } from '../components'
+import { apolloResult } from '../components/functions'
+import { withIntl, compose, withRouter } from '../components/compose'
+import { Link } from '../components/env'
+import { Page } from '../components/page'
+import { Post } from '../components/post'
 
 export const query = gql`
   query post($id: ID!){
@@ -29,14 +32,12 @@ export class PostPage extends Component {
       <Page title={t('hello')}>
         <Navbar dark color='primary' expand='lg'>
           <Container>
-            <Link href='/'>
-              <a className='navbar-brand'>{t('hello')}</a>
-            </Link>
+            <Link href='/' className='navbar-brand'>{t('hello')}</Link>
           </Container>
         </Navbar>
         <Container className='mt-4 position-relative'>
           <Query query={query} variables={{ id: router.query.id }}>
-            {apolloResult((data, { refetch }) => <Post.Post post={data.post} />)}
+            {apolloResult((data, { refetch }) => <Post post={data.post} />)}
           </Query>
         </Container>
       </Page>

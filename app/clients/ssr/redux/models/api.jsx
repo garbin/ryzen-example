@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { config } from '../../lib/helper'
+import { config } from '../../components/functions'
+
 function getFullPath (path) {
   return config().api + path
 }
