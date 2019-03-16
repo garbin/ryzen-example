@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node -r esm ./app/commands/server",
-        "watch": "nodemon -x 'node -r esm' --watch app --ignore app/clients -L -e js,es,jsx ./app/commands/server",
+        "watch": "nodemon -x 'node -r esm' --watch app --ignore 'app/clients/**/*.json' --ignore 'app/clients/**/*.jsx' -L -e js,es,jsx ./app/commands/server",
         "build": "node -r esm ./app/commands/build",
         "test": "export NODE_ENV=test && standard ./app && npm run reset && jest",
         "knex": "knex --knexfile ./deploy/database/knexfile.js",
