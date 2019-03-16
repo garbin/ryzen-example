@@ -1,14 +1,17 @@
 export default {
   name: 'Example',
-  description: 'Example',
-  schedule: '* * * * * *',
+  schedule: '*/5 * * * * *',
   events: {
-    run: console.log.bind(console, 'event run'),
-    scheduled: console.log.bind(console, 'event scheduled'),
-    canceled: console.log.bind(console, 'event canceled')
+    scheduled: console.log.bind(console, 'job scheduled'),
+    triggered: console.log.bind(console, 'job triggered'),
+    canceled: console.log.bind(console, 'job canceled')
   },
   async handler () {
     console.log('running')
+    await new Promise((resolve, reject) => {
+      setTimeout(resolve, 3000)
+    })
+    console.log('done')
     throw new Error('test')
   }
 }
