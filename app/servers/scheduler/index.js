@@ -10,7 +10,7 @@ export async function run (name) {
   const scheduler = merge({
     events: {
       scheduled: function () {},
-      triggered: function () {},
+      run: function () {},
       canceled: function () {}
     }
   }, imported.default)
@@ -25,7 +25,7 @@ export async function run (name) {
   }
   const job = jobs[name] = schedule.scheduleJob(scheduler.name, scheduler.schedule, execute(scheduler.handler))
   job.on('scheduled', execute(scheduler.events.scheduled))
-  job.on('run', execute(scheduler.events.triggered))
+  job.on('run', execute(scheduler.events.run))
   job.on('canceled', execute(scheduler.events.canceled))
 }
 

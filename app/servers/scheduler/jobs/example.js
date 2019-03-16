@@ -3,7 +3,7 @@ export default {
   schedule: '*/5 * * * * *',
   events: {
     scheduled: console.log.bind(console, 'job scheduled'),
-    triggered: console.log.bind(console, 'job triggered'),
+    run: console.log.bind(console, 'job handler has been executed(sync)'),
     canceled: console.log.bind(console, 'job canceled')
   },
   async handler () {
