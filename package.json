@@ -7,8 +7,9 @@
         "start": "node -r esm ./app/commands/server",
         "watch": "nodemon -x 'node -r esm' --watch app --ignore app/clients -L -e js,es,jsx ./app/commands/server",
         "build": "node -r esm ./app/commands/build",
-        "build-locale": "extract-messages -l 'en_US' -d 'en_US' -o app/client/locales --flat 'app/client/**/*.jsx'",
+        "test-queue": "node -r esm ./app/commands/test-queue",
         "test": "export NODE_ENV=test && standard ./app && npm run resetup && jest",
+        "migrate": "node -r esm ./app/commands/migrate",
         "setup": "npm run knex migrate:latest && npm run knex seed:run",
         "resetup": "npm run knex migrate:rollback && npm run setup",
         "knex": "knex --knexfile ./deploy/database/knexfile.js"
@@ -39,6 +40,7 @@
         "axios": "^0.18.0",
         "bootstrap": "^4.3.1",
         "bootswatch": "^4.3.1",
+        "bull": "^3.7.0",
         "classnames": "^2.2.6",
         "conf": "^3.0.0",
         "date-fns": "^1.30.1",

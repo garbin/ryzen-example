@@ -9,17 +9,20 @@ command({
       default: ['spa']
     },
     jobs: { default: [], type: 'array' },
-    port: { default: 0, type: 'number' }
+    workers: { default: [], type: 'array' },
+    port: { default: 0, type: 'number' },
+    cluster: { default: false, type: 'boolean' }
   },
   describe: 'start servers',
   handler (argv) {
-    argv.servers.forEach(async name => {
-      const servers = await glob('**', { deep: 0, cwd: 'app/servers', onlyFiles: false })
-      if (servers.includes(name)) {
+    const { servers, ...params } = argv
+    servers.forEach(async name => {
+      const availables = await glob('**', { deep: 0, cwd: 'app/servers', onlyFiles: false })
+      if (availables.includes(name)) {
         const server = await import(`../servers/${name}`)
         server.start({
-          port: argv.port || config.app.get(`servers.${name}.port`),
-          jobs: argv.jobs
+          ...params,
+          port: params.port || config.app.get(`servers.${name}.port`)
         })
       }
     })

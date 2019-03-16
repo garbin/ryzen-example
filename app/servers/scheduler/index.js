@@ -15,9 +15,9 @@ export async function run (name) {
     }
   }, imported.default)
   function execute (asyncFunc) {
-    return async function () {
+    return async function (...args) {
       try {
-        await asyncFunc()
+        await asyncFunc(...args)
       } catch (e) {
         logger.error(e)
       }
