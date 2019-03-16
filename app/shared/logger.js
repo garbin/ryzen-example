@@ -4,7 +4,7 @@ import path from 'path'
 export default function (name, filename) {
   const { format } = winston
   filename = filename || path.resolve(__dirname, `../../data/logs/${name}.log`)
-  return winston.loggers.get('scheduler', {
+  return winston.loggers.get(name, {
     format: format.combine(
       format.errors({ stack: true }),
       format.timestamp(),
