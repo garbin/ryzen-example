@@ -10,9 +10,8 @@ export class Page extends React.Component {
     settings: PropTypes.object
   }
   render () {
-    const { title, children, _public = false, loading } = this.props
-    const { settings } = this.context
-    const pageTitle = _public ? title : `${title ? title + ' - ' : ''}${_public ? settings.epress_name : 'ePress'}`
+    const { title, children, loading } = this.props
+    const pageTitle = 'Ryzen SSR Example'
     return (
       <div>
         <Head>
