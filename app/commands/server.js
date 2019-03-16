@@ -10,8 +10,7 @@ command({
     },
     jobs: { default: [], type: 'array' },
     workers: { default: [], type: 'array' },
-    port: { default: 0, type: 'number' },
-    cluster: { default: false, type: 'boolean' }
+    port: { default: 0, type: 'number' }
   },
   describe: 'start servers',
   handler (argv) {

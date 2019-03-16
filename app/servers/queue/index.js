@@ -1,7 +1,5 @@
 import Queue from 'bull'
-import cluster from 'cluster'
 import getLogger from '../../shared/logger'
-import os from 'os'
 
 const logger = getLogger('queue')
 const queue = new Queue('Ryzen Queue')
@@ -41,21 +39,7 @@ async function run (name) {
 // queue.add({WORKER_NAME}, {DATA}, {OPTIONS})
 export { queue }
 
-export function start ({ workers, cluster: isCluster }) {
-  if (cluster.isMaster && isCluster) {
-    cluster && console.log('cluster is enabled')
-    for (let i = 0; i < os.cpus().length; i++) cluster.fork()
-
-    cluster.on('online', function (worker) {
-      console.log(`Queue #${worker.process.pid} is online`)
-    // Lets create a few jobs for the queue workers
-    })
-
-    cluster.on('exit', function (worker, code, signal) {
-      console.log(`Queue #${worker.process.pid} died`)
-    })
-  } else {
-    workers.forEach(name => run(name, cluster))
-    console.log('Queue server has been started')
-  }
+export function start ({ workers }) {
+  workers.forEach(run)
+  console.log('Queue server has been started')
 }

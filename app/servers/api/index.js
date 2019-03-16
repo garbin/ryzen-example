@@ -10,8 +10,8 @@ app.use(middlewares.router(Object.values(routers)))
 graphql.server(schema).applyMiddleware({ app })
 
 export { routers, app }
-export function start ({ port, cluster } = {}) {
-  server = app[cluster ? 'cluster' : 'listen'](port, function () {
+export function start ({ port } = {}) {
+  server = app.listen(port, function () {
     console.log(`API Server has started on port ${this.address().port}`)
   })
   return server
