@@ -2,7 +2,7 @@ import '@babel/polyfill'
 import './style'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './app'
+import App from './pages/_app'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(<App />, document.getElementById('app'))

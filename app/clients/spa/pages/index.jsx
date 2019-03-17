@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { withIntl, compose, connect } from '../components/compose'
 import { Container, Navbar, NavbarBrand } from 'reactstrap'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Page } from '../components/page'
 import { List } from '../components/post'
+import Post from './post'
 
-class Index extends Component {
+const Index = compose(
+  connect(state => ({ posts: state.api.posts })),
+  withIntl
+)(class Index extends Component {
   componentWillMount () {
     this.props.dispatch.api.get(['/posts'])
   }
@@ -23,9 +28,13 @@ class Index extends Component {
       </Page>
     )
   }
-}
+})
 
-export default compose(
-  connect(state => ({ posts: state.api.posts })),
-  withIntl
-)(Index)
+export default props => (
+  <Router>
+    <div>
+      <Route exact path='/' component={Index} />
+      <Route exact path='/posts/:id' component={Post} />
+    </div>
+  </Router>
+)
