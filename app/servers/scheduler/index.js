@@ -30,6 +30,7 @@ export async function run (name) {
 }
 
 // server required
+export const cluster = false // cluster disabled
 export function start ({ jobs }) {
   assert(jobs.length > 0, 'Jobs is empty')
   jobs.forEach(run)

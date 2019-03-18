@@ -24,7 +24,7 @@ module.exports = {
     defaults: {
       servers: {
         api: {
-          port: 6000,
+          port: 5000,
           middlewares: { accesslog: true },
           passport
         },
